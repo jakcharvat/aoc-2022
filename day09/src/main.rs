@@ -1,8 +1,6 @@
 use std::{collections::HashSet, fmt::Display, io::stdin};
 
-use coord::Coord;
-
-mod coord;
+use advent::coord::Coord;
 
 struct Visited<'a>(&'a HashSet<Coord>);
 impl<'a> Display for Visited<'a> {
