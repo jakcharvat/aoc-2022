@@ -1,0 +1,8 @@
+[package]
+name = "day11"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+dbg-pls = { version = "0.4.3", features = ["colors"] }
+nom = "7.1.3"
