@@ -1,6 +1,6 @@
 use std::{
     fmt::Display,
-    ops::{Add, AddAssign, Div, Mul, Sub, SubAssign},
+    ops::{Add, AddAssign, Div, Index, IndexMut, Mul, Sub, SubAssign},
 };
 
 type CoordT = isize;
@@ -12,8 +12,14 @@ pub struct Coord {
 }
 
 impl Coord {
-    pub fn new(x: CoordT, y: CoordT) -> Coord {
-        Coord { x, y }
+    pub fn new<T>(x: T, y: T) -> Coord
+    where
+        T: Into<CoordT>,
+    {
+        Coord {
+            x: x.into(),
+            y: y.into(),
+        }
     }
 
     pub fn zero() -> Coord {
@@ -34,6 +40,10 @@ impl Coord {
 
     pub fn down() -> Coord {
         Coord { x: 0, y: 1 }
+    }
+
+    pub fn left_down_right_up() -> [Coord; 4] {
+        [Coord::left(), Coord::down(), Coord::right(), Coord::up()]
     }
 
     pub fn inf_norm(&self) -> CoordT {
@@ -62,6 +72,13 @@ impl Coord {
             x: self.x.max(rhs.x),
             y: self.y.max(rhs.y),
         }
+    }
+
+    pub fn is_in_grid<T>(&self, grid: &Vec<Vec<T>>) -> bool {
+        self.y >= 0
+            && (self.y as usize) < grid.len()
+            && self.x >= 0
+            && (self.x as usize) < grid[0].len()
     }
 }
 
@@ -142,6 +159,24 @@ impl Div<Coord> for CoordT {
             x: self / rhs.x,
             y: self / rhs.y,
         }
+    }
+}
+
+impl<T> Index<Coord> for Vec<Vec<T>> {
+    type Output = T;
+
+    fn index(&self, index: Coord) -> &Self::Output {
+        let y: usize = index.y.try_into().unwrap();
+        let x: usize = index.x.try_into().unwrap();
+        &self[y][x]
+    }
+}
+
+impl<T> IndexMut<Coord> for Vec<Vec<T>> {
+    fn index_mut(&mut self, index: Coord) -> &mut Self::Output {
+        let y: usize = index.y.try_into().unwrap();
+        let x: usize = index.x.try_into().unwrap();
+        &mut self[y][x]
     }
 }
 
