@@ -1,4 +1,6 @@
+pub mod bounds;
 pub mod coord;
+pub mod parsers;
 
 #[macro_export]
 macro_rules! vec2d {

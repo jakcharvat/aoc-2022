@@ -80,6 +80,10 @@ impl Coord {
             && self.x >= 0
             && (self.x as usize) < grid[0].len()
     }
+
+    pub fn manhattan(&self) -> isize {
+        self.x.abs() + self.y.abs()
+    }
 }
 
 impl Add for Coord {
@@ -183,49 +187,5 @@ impl<T> IndexMut<Coord> for Vec<Vec<T>> {
 impl Display for Coord {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         write!(f, "({}, {})", self.x, self.y)
-    }
-}
-
-trait Internal {}
-
-#[allow(private_bounds)]
-pub trait CoordUtils: Internal {
-    fn coord_bounds(self) -> Bounds;
-}
-
-#[derive(Clone, Copy, Debug, dbg_pls::DebugPls)]
-pub struct Bounds {
-    min: Coord,
-    max: Coord,
-}
-
-impl Bounds {
-    fn new() -> Bounds {
-        Bounds {
-            min: Coord::MAX,
-            max: Coord::MIN,
-        }
-    }
-
-    fn with(self, coord: &Coord) -> Bounds {
-        Bounds {
-            min: self.min.min(*coord),
-            max: self.max.max(*coord),
-        }
-    }
-
-    pub fn min(&self) -> Coord {
-        self.min
-    }
-
-    pub fn max(&self) -> Coord {
-        self.max
-    }
-}
-
-impl<'a, I: Iterator<Item = &'a Coord>> Internal for I {}
-impl<'a, I: Iterator<Item = &'a Coord>> CoordUtils for I {
-    fn coord_bounds(self) -> Bounds {
-        self.fold(Bounds::new(), |bounds, curr| bounds.with(curr))
     }
 }
