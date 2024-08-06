@@ -1,5 +1,6 @@
 pub mod bounds;
 pub mod coord;
+pub mod itertools;
 pub mod parsers;
 
 #[macro_export]
