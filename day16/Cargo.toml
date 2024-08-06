@@ -1,0 +1,10 @@
+[package]
+name = "day16"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+advent = { version = "1.0.0", path = "../advent" }
+bitvec = "1.0.1"
+dbg-pls = { version = "0.4.3", features = ["pretty"] }
+nom = "7.1.3"
