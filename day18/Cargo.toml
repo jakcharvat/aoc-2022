@@ -1,0 +1,9 @@
+[package]
+name = "day18"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+advent = { version = "3.0.0", path = "../advent" }
+dbg-pls = { version = "0.4.3", features = ["pretty"] }
+nom = "7.1.3"
