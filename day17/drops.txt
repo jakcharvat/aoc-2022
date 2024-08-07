@@ -1,0 +1,40 @@
+   Compiling advent v2.0.0 (/Users/jakcharvat/dev/aoc-2022/advent)
+   Compiling day17 v0.1.0 (/Users/jakcharvat/dev/aoc-2022/day17)
+error[E0061]: this struct takes 2 arguments but 3 arguments were supplied
+   --> src/main.rs:119:13
+    |
+119 |             ShowChamber(self, rock, rock_pos)
+    |             ^^^^^^^^^^^             -------- unexpected argument of type `Coord`
+    |
+note: expected `Option<(Rock, Coord)>`, found `Rock`
+   --> src/main.rs:119:31
+    |
+119 |             ShowChamber(self, rock, rock_pos)
+    |                               ^^^^
+    = note: expected enum `Option<(Rock, Coord)>`
+               found enum `Rock`
+note: tuple struct defined here
+   --> src/main.rs:184:8
+    |
+184 | struct ShowChamber<'a>(&'a Chamber, Option<(Rock, Coord)>);
+    |        ^^^^^^^^^^^
+help: remove the extra argument
+    |
+119 -             ShowChamber(self, rock, rock_pos)
+119 +             ShowChamber(self, /* Option<(Rock, Coord)> */)
+    |
+
+error[E0308]: mismatched types
+   --> src/main.rs:226:32
+    |
+226 |     let mut chamber: Chamber = array::from_fn(|_| HashSet::new());
+    |                      -------   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ expected `Chamber`, found `[HashSet<_>; _]`
+    |                      |
+    |                      expected due to this
+    |
+    = note: expected struct `Chamber`
+                found array `[HashSet<_>; _]`
+
+Some errors have detailed explanations: E0061, E0308.
+For more information about an error, try `rustc --explain E0061`.
+error: could not compile `day17` (bin "day17") due to 2 previous errors
