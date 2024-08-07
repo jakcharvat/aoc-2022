@@ -12,14 +12,8 @@ pub struct Coord {
 }
 
 impl Coord {
-    pub fn new<T>(x: T, y: T) -> Coord
-    where
-        T: Into<CoordT>,
-    {
-        Coord {
-            x: x.into(),
-            y: y.into(),
-        }
+    pub fn new(x: isize, y: isize) -> Coord {
+        Coord { x, y }
     }
 
     pub fn zero() -> Coord {
