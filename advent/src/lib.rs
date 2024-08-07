@@ -1,5 +1,6 @@
 pub mod bounds;
 pub mod coord;
+pub mod coord3;
 pub mod diagonal_iterable;
 pub mod parsers;
 pub mod side_effect;
