@@ -1,7 +1,8 @@
 pub mod bounds;
 pub mod coord;
-pub mod itertools;
+pub mod diagonal_iterable;
 pub mod parsers;
+pub mod side_effect;
 
 #[macro_export]
 macro_rules! vec2d {

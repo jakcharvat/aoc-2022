@@ -1,4 +1,4 @@
-pub trait Itertools<T> {
+pub trait DiagonalIterable<T> {
     fn iter_diagonal<'a>(&'a self) -> impl Iterator<Item = &'a T>
     where
         T: 'a;
@@ -10,7 +10,7 @@ pub trait Itertools<T> {
     fn into_iter_diagonal(self) -> impl Iterator<Item = T>;
 }
 
-impl<T> Itertools<T> for Vec<Vec<T>> {
+impl<T> DiagonalIterable<T> for Vec<Vec<T>> {
     fn iter_diagonal<'a>(&'a self) -> impl Iterator<Item = &'a T>
     where
         T: 'a,
