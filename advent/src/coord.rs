@@ -160,6 +160,19 @@ impl Div<Coord> for CoordT {
     }
 }
 
+pub trait ContainsCoord {
+    fn contains_coord(&self, coord: Coord) -> bool;
+}
+
+impl<T> ContainsCoord for Vec<Vec<T>> {
+    fn contains_coord(&self, coord: Coord) -> bool {
+        coord.y >= 0
+            && (coord.y as usize) < self.len()
+            && coord.x >= 0
+            && (coord.x as usize) < self[coord.y as usize].len()
+    }
+}
+
 impl<T> Index<Coord> for Vec<Vec<T>> {
     type Output = T;
 
