@@ -1,5 +1,6 @@
 use std::{
     fmt::Display,
+    iter::Sum,
     ops::{Add, AddAssign, Div, Index, IndexMut, Mul, Sub, SubAssign},
 };
 
@@ -157,6 +158,12 @@ impl Div<Coord> for CoordT {
             x: self / rhs.x,
             y: self / rhs.y,
         }
+    }
+}
+
+impl Sum for Coord {
+    fn sum<I: Iterator<Item = Self>>(iter: I) -> Self {
+        iter.reduce(|acc, curr| acc + curr).unwrap_or(Coord::zero())
     }
 }
 
