@@ -1,4 +1,4 @@
-use advent::itertools::Itertools;
+use advent::diagonal_iterable::DiagonalIterable;
 use bitvec::vec::BitVec;
 use std::{
     collections::{BTreeMap, HashSet, VecDeque},

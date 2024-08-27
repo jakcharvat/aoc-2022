@@ -1,7 +1,4 @@
-use std::{
-    collections::{HashMap, VecDeque},
-    io::stdin,
-};
+use std::{collections::VecDeque, io::stdin};
 
 use advent::{coord::Coord, vec2d};
 

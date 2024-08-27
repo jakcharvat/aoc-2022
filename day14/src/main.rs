@@ -3,7 +3,7 @@ use std::{
     io::{stdin, Read},
 };
 
-use advent::coord::{Coord, CoordUtils};
+use advent::{bounds::CoordBounded, coord::Coord};
 use parser::parse_lines;
 use sandbox_drawer::Sandbox;
 
@@ -96,7 +96,7 @@ fn main() {
     assert!(input.trim().is_empty());
 
     let grid = make_grid(&lines);
-    let max_y = grid.iter().coord_bounds().max().y;
+    let max_y = grid.iter().coord_bounds().max.y;
     eprintln!("Original grid:\n{}", grid!(grid));
 
     let mut sandbox = grid.clone();

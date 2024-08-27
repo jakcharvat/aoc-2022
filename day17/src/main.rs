@@ -388,7 +388,7 @@ mod tests {
             };
 
             ( $x:expr, $y:expr ) => {
-                ch.fill_block(Coord::new::<isize>($x, $y))
+                ch.fill_block(Coord::new($x, $y))
             };
         }
 

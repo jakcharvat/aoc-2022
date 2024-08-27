@@ -1,6 +1,6 @@
 use std::{collections::HashSet, fmt::Display};
 
-use advent::coord::{Coord, CoordUtils};
+use advent::{bounds::CoordBounded, coord::Coord};
 
 use crate::SAND_DROP;
 
@@ -38,8 +38,8 @@ impl<'a> Display for Sandbox<'a> {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         let grid_bounds = self.grid.iter().coord_bounds();
         let sand_bounds = self.sandbox.iter().coord_bounds();
-        let min = grid_bounds.min().min(sand_bounds.min());
-        let max = grid_bounds.max().max(sand_bounds.max());
+        let min = grid_bounds.min.min(sand_bounds.min);
+        let max = grid_bounds.max.max(sand_bounds.max);
         assert!(min.y >= 0);
 
         let y_label_width = (max.y + 2).to_string().len();
